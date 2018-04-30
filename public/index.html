@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+        <title>TUC-Racer Biernterface</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" href="leaflet/leaflet.css"/>
+        <script src="leaflet/leaflet.js"></script>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+
+    </body>
+    <script>
+     var map;
+     var ajaxRequest;
+     var plotlist;
+     var plotlayers=[];
+
+     function initmap() {
+         map = new L.Map('map');
+
+         var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+         var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+         var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 18, attribution: osmAttrib});
+         map.setView(new L.LatLng(51.808006, 10.340707),14);
+         map.addLayer(osm);
+     }
+     initmap();
+    </script>
+</html>
