@@ -11,23 +11,14 @@
     <body>
         <div id="map">
         </div>
-
     </body>
     <script>
-     var map;
-     var ajaxRequest;
-     var plotlist;
-     var plotlayers=[];
-
-     function initmap() {
-         map = new L.Map('map');
-
-         var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-         var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-         var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 18, attribution: osmAttrib});
-         map.setView(new L.LatLng(51.808006, 10.340707),14);
-         map.addLayer(osm);
-     }
-     initmap();
+     const map = new L.Map('map')
+     const osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+     const osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+     const osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 18, attribution: osmAttrib})
+     map.setView(new L.LatLng(51.808006, 10.340707),14)
+     map.addLayer(osm)
+     const marker = L.marker([ 51.808006, 10.340707]).addTo(map)
     </script>
 </html>

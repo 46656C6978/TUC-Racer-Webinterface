@@ -1,13 +1,13 @@
 @startuml
 
 class User {
-id:hash
+id:int
 auth_strategy:obj
 }
 
 class Track {
-id:hash
-user_id:hash
+id:int
+user_id:int
 }
 
 class Checkpoint {
@@ -15,9 +15,9 @@ radius:Number
 }
 
 class Tour {
-id:hash
-track_id:hash
-user_id:hash
+id:int
+track_id:int
+user_id:int
 }
 
 class Position {
@@ -29,7 +29,7 @@ longtitude:Number
 langtitude:Number
 }
 
-Track "*" --> "*" Checkpoint:checkpoints
+Track "1" --> "*" Checkpoint:checkpoints
 Tour "1" --> "*" Position:way
 
 Checkpoint "1" --> "1" Coordinate:coordinate
