@@ -1,5 +1,5 @@
 @startuml
-skinparam dpin 400
+skinparam dpi 400
 
 node Server {
 node NodeJS {

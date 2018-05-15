@@ -1,0 +1,42 @@
+@startuml
+skinparam dpi 400
+skinparam componentStyle uml2
+
+component Server {
+component NeDB
+interface "NeDB API" as nedb_api
+component socket.io as sock_server
+interface "socket.io API" as sock_api
+component app.js as s_controller
+
+}
+
+component Client {
+component socket.io as sock_client
+interface "socket.io API" as sock_api_c
+component Leaflet as leaflet
+interface "Leaflet API" as leaflet_api
+component controller as c_controller
+}
+
+
+interface "socket.io WebSocket" as sock_web
+interface "socket.io WebSocket" as sock_web_c
+
+NeDB - nedb_api
+s_controller -( nedb_api
+sock_server - sock_api
+sock_server - sock_web
+sock_server -( sock_web_c
+s_controller -( sock_api
+
+sock_client -up- sock_web_c
+sock_client -up-( sock_web
+sock_client - sock_api_c
+sock_api_c )- c_controller
+leaflet_api - leaflet
+c_controller -( leaflet_api
+leaflet --# OSM
+
+
+@enduml
