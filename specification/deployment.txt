@@ -1,0 +1,46 @@
+@startuml
+skinparam dpin 400
+
+node Server {
+node NodeJS {
+artifact app.js
+component NeDB
+component socket.io as sock_server
+}
+artifact db.json
+}
+
+node Client {
+node Browser {
+artifact index.html
+artifact reset.css
+artifact style.css
+
+node JSInterpreter {
+artifact controller.js as controller
+component socket.io as sock_client
+component Leaflet as leaflet
+}
+}
+}
+
+node OSM {
+
+}
+
+Server -- Client : IP/IPoAC
+NodeJS -- Browser : HTTP
+NeDB -left- db.json : Filesystem
+app.js - NeDB : API
+sock_server - app.js : API
+sock_client - sock_server : WebSocket
+sock_client - controller : API
+controller - leaflet  : API
+leaflet -- OSM : API
+
+leaflet -[hidden]down- index.html
+index.html -[hidden]right- reset.css
+reset.css -[hidden]right- style.css
+
+
+@enduml
