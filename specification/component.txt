@@ -23,20 +23,20 @@ component controller as c_controller
 interface "socket.io WebSocket" as sock_web
 interface "socket.io WebSocket" as sock_web_c
 
-NeDB - nedb_api
-s_controller -( nedb_api
-sock_server - sock_api
-sock_server - sock_web
-sock_server -( sock_web_c
-s_controller -( sock_api
+NeDB -left- nedb_api
+s_controller -right-( nedb_api
+sock_server -right- sock_api
+sock_server -down- sock_web
+sock_server -down-( sock_web_c
+s_controller -left-( sock_api
 
 sock_client -up- sock_web_c
 sock_client -up-( sock_web
 sock_client - sock_api_c
 sock_api_c )- c_controller
-leaflet_api - leaflet
+leaflet_api -right- leaflet
 c_controller -( leaflet_api
-leaflet --# OSM
+leaflet -# OSM
 
 
 @enduml
